@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Activity #1 | PUP HYMN</title>
+    <link rel="icon" type="image/png" href="PUPLogo.png">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="main">
+        <div class="card">
+            <div class="left-arrow"> 
+                <img src="left.png">
+            </div>
+            <div class="lyric-container">
+                <p class="lyrics">...</p>
+                <p class="lyrics2">...</p>
+                <p class="lyrics3">Sintang Paaralan</p>
+                <p class="lyrics4">Tanglaw ka ng bayan</p>
+            </div>
+        </div>
+        <div class="card2">
+            <div class="exit">
+                <img src="https://img.icons8.com/ios-glyphs/45/000000/xbox-x.png"/>
+            </div>
+            <div class="right-arrow">
+                <img src="right.png">
+            </div>
+            <div class="details">
+                <h1 class="title">Imno ng PUP</h1>
+                <p class="author">S. Calabig, S. Roldan, and R. Amaranto</p>
+                <div class="audio-container">
+                    <audio class="player" controls autoplay>
+                        <source class="playme" src="Imno.mp3" type="audio/mp3">
+                        Your browser does not support the audio element.
+                    </audio>  
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        //create constants for all container
+        const container = document.querySelector(".lyrics");
+        const container2 = document.querySelector(".lyrics2");
+        const container3 = document.querySelector(".lyrics3");
+        const container4 = document.querySelector(".lyrics4");
+        //get audio
+        const audio = document.querySelector(".player");
+        //create an array to store the lyrics
+        const lyrics = [
+            "...",                                  //0
+            "Sintang Paaralan",                     //1
+            "Tanglaw ka ng bayan",                  //2
+            "Pandayan ng isip ng kabataan",         //3
+            "Kami ay dumating",                     //4
+            "nang salat sa yaman",                  //5
+            "Hanap na dunong ay iyong alay",        //6
+            "Ang layunin mong makatao",             //7
+            "Dinarangal ang Pilipino",              //8
+            "Ang iyong aral, diwa, adhikang taglay",//9
+            "PUP, aming gabay",                     //10
+            "Paaralang dakila",                     //11
+            "PUP, Pinagpala",                       //12
+            "Gagamitin ang Karunungan",             //13
+            "Mula sa'yo, para sa Bayan",            //14
+            "Ang iyong aral, diwa, adhikang taglay",//15
+            "PUP, aming gabay",                     //16
+            "Paaralang dakila",                     //17
+            "PUP, Pinagpala",                       //18
+            "...",                                  //19
+            "..."                                   //20
+        ]
+        //get every line of the lyrics
+        audio.addEventListener('timeupdate', () => {
+            const time = audio.currentTime
+            let i = 0 //set index to zero
+            if (time === 1 || time <= 13){ //...
+                i = 0;
+            } else if (time <= 15){ //sintang paaralan
+                i = 1;
+            } else if (time <= 18.20){ //tanglaw ka ng bayan
+                i = 2;
+            } else if (time <= 24.23){ //pandayan ng isip ng kabataan
+                i = 3;
+            } else if (time <= 26.80){ // kami ay dumating 
+                i = 4;
+            } else if (time <= 29.23){ // nang salat sa yaman
+                i = 5;
+            } else if (time <= 35.30){ // hanap na dunong, ay iyong alay
+                i = 6;
+            } else if (time <= 41.00){ // ang layunin mong makatao
+                i = 7;
+            } else if (time <= 47.00){ // dinarangal ang pilipino
+                i = 8;
+            } else if (time <= 53.00){ // ang iyon aral, diwa etc.
+                i = 9;
+            } else if (time <= 56.66){// PUP aming gabay
+                i = 10;
+            } else if (time <= 62.86){ // dakila
+                i = 11;
+            } else if (time <= 68.10){ // pinagpala
+                i = 12;
+            } else if (time <= 74.00){ //gagamiting ang karunungan
+                i = 13;
+            } else if (time <= 80.00){ // mula sayo para sa bayan
+                i = 14;
+            } else if (time <= 86.23){ // ang iyong aral etc
+                i = 15;
+            } else if (time <= 89.59){ // pup aming gabay
+                i = 16;
+            } else if (time <= 95.20){// dakila
+                i = 17;
+            } else if (time <= 105.00){// pinagpala
+                i = 18;
+            } else if (time <= 106.00) {// 
+                i = 19;
+            } else if (time <= 107.00) {// 
+                i = 20;
+            }
+            //Ternary operator statement
+            //basically, if the value of index or i is greater than 0, then the previouslyrics will contain the lyrics of the previos line sa array.
+            //So here, if i will be less than or equal to 0 and not greater than 0, the lyrics[index-1] will be "..."
+            //therefore, previouslyrics' value in index[-1] will be ...
+            let previousLyrics = (i > 0) ? lyrics[i-1] : "...";
+
+            //display the lyrics to the container
+            if (time <= 105){
+                container.innerHTML = previousLyrics;
+                container2.innerHTML = lyrics[i+0];
+                container3.innerHTML = lyrics[i+1];
+                container4.innerHTML = lyrics[i+2];
+            }else{
+                container.innerHTML = "...";
+                container2.innerHTML = "...";
+                container3.innerHTML = "...";
+                container4.innerHTML = "...";
+            }
+        });
+
+        //basically, not-needed codes since wala sa instructions pero i dunno.
+        const arrow = document.querySelector('.right-arrow');
+        const picture = document.querySelector('.card2');
+        const images = [
+            'bg1.jpg',
+            'bg2.jpg',
+            'bg3.jpg'
+            ];
+        let imgIndex = 0;
+        arrow.addEventListener('click', () => {
+            imgIndex++;
+            if (imgIndex >= images.length) {
+                imgIndex = 0;
+            }
+                picture.style.backgroundImage = `url(${images[imgIndex]})`;
+        });
+        const leftArrow = document.querySelector('.left-arrow');
+        const color = document.querySelector('.card')
+        const arrcolor = [
+            '145deg, #f45b69, #ce2e7d',
+            '145deg, #def22d, #5f5c0a;'
+            
+        ];
+        let colorIndex = 0;
+        leftArrow.addEventListener('click', () => {
+            colorIndex++;
+            if (colorIndex >= arrcolor.length) {
+                colorIndex = 0;
+            }
+            color.style.background = `linear-gradient(${arrcolor[colorIndex]})`;
+        });
+
+    </script>
+
+</body>
+
+<footer>
+    <p>&copy;BSCS 3-1N | Programmer: Mikhan C. Balbastro</p>
+</footer>
+
+</html>
